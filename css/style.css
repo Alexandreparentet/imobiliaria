@@ -76,7 +76,7 @@ nav a:hover {
 /* ===== Cabeçalho da página ===== */
 
 header {
-    height: 16rem;
+    height: 20rem;
     margin-top: 3.5rem;
     background-color: var(--cor-04);
 }
@@ -116,7 +116,7 @@ section {
 /* ===== Footer ===== */
 
 footer {
-    min-height: 20rem;
+    min-height: 16rem;
     background-color: var(--cor-05);
     color: var(--cor-02);
     padding: 2rem;
