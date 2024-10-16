@@ -1,6 +1,6 @@
+
 /* Fonte */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,700&display=swap');
-
 
 :root {
     /* Paleta de cores */
@@ -10,6 +10,9 @@
     --cor-03: #8e8e8e;
     --cor-04: #595959;
     --cor-05: #232323;
+
+    /* Sombra:  X   Y   Desfoque    Espessura   Cor */
+    --sombra:   0   0   0.5rem      0.2rem      var(--cor-03);
 }
 
 /* Reset */
@@ -27,97 +30,129 @@ html {
 
 body {
     background-color: var(--cor-02);
-    color: var(--cor-05)
+    color: var(--cor-05);
 }
 
 /* ===== Barra de Navegação ===== */
-
 nav {
     position: fixed;
+    z-index: 1000;
     top: 0;
     left: 0;
     width: 100%;
     padding: 1rem;
-    background-color: var(--cor-principal);
+    background-color: var(--cor-04);
     display: flex;
-    /* flex-direction: row; */
     justify-content: space-between;
     letter-spacing: 0.1rem;
-
 }
 
-nav ul{
+nav ul {
     list-style-type: none;
     display: flex;
-    gap: 1rem;
-
+    gap: 0.5rem;
 }
 
 nav a {
     text-decoration: none;
+    text-transform: uppercase;
     color: var(--cor-02);
+    font-weight: 700;
     padding: 0.5rem;
-    font-weight: bold;
-    text-transform:uppercase;
     transition: 0.5s;
-
-    /* border: solid 1px yellow; */
 }
 
 nav a:hover {
     color: var(--cor-03);
 }
 
-.logo { 
+.logo {
     font-size: 1.2rem;
-    font-weight: bold;
+    font-weight: 700;
 }
 
 /* ===== Cabeçalho da página ===== */
-
 header {
     height: 20rem;
     margin-top: 3.5rem;
-    background-color: var(--cor-04);
+    background-color: var(--cor-03);
 }
 
-/* ===== Section ===== */
-
+/* ===== Sections ===== */
 section {
     min-height: 80vh;
     padding: 5rem 2rem;
 
-    /* border: solid 1px red; */
+    border: solid 2px red; /* TESTE */
 }
 
-/* ===== Card do Imóvel ===== */
+/* ===== Estrutura dos Cards dos Imóveis ===== */
 #imoveis {
+    margin: auto;
     display: grid;
     grid-template-columns: auto auto auto;
-    gap: 1rem;
+    gap: 2rem;
 }
 
+/* Card */
 .imovel {
-    
-    border: solid 1px #0066ff; /* TESTE */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: 0.5s;
+    padding: 0.8rem;
+    background-color: var(--cor-01);
+    border: solid 1px var(--cor-03);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.imovel:hover {
+    transform: scale(1.02);
+    cursor: pointer;
+    box-shadow: var(--sombra);
 }
 
 .foto {
     height: 14rem;
-    
-    border: solid 1px #1ddb00; /* TESTE */
+    width: 100%;
 }
 
 .foto img {
     height: 100%;
+    width: 100%;
+}
+
+.conteudo {
+    height: auto;
+    text-align: justify;
+}
+
+.conteudo h3, p {
+    margin: 0.5rem auto;
+}
+
+.info {
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    /* border: solid 1px; */
+}
+
+.valor-imovel {
+    font-size: 1.2rem;
+    margin: 1rem auto;
 }
 
 
-/* ===== Footer ===== */
 
+/* ===== Footer ===== */
 footer {
     min-height: 16rem;
     background-color: var(--cor-05);
-    color: var(--cor-02);
+    color: var(--cor-03);
     padding: 2rem;
 }
