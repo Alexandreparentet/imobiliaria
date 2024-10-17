@@ -10,13 +10,13 @@ fetch(urlAPI)
     .then(listaImoveis => {
         if (listaImoveis.length == 0) {
             document.querySelector("#imoveis").innerHTML = 'Não há imóveis cadastrados';
-        
+
         } else {
             criarCardImoveis(listaImoveis);
         }
     })
     .catch((erro) => {
-        console.error("Erro", erdadosro);
+        console.error("Erro", erro);
         alert("Não foi possível carregar os dados");
     });
 
@@ -28,6 +28,7 @@ function criarCardImoveis(listaImoveis) {
         // Cria o "card" do imóvel
         const cardImovel = document.createElement("article");
         cardImovel.setAttribute('id', imovel.id);
+        cardImovel.setAttribute('onclick', 'mostrarImovel(this.id)');
         cardImovel.classList.add("imovel");
         document.querySelector("#imoveis").appendChild(cardImovel);
 
@@ -84,12 +85,24 @@ function criarCardImoveis(listaImoveis) {
         const btnExcluir = document.createElement('button');
         btnExcluir.setAttribute('id', imovel.id);
         btnExcluir.setAttribute('onclick', 'excluirImovel(this)');
-        btnExcluir.innerHTML = '🗑';
+        btnExcluir.innerHTML = '🗑️';
         divDados.appendChild(btnExcluir);
     });
 }
 
+/*
+    - Se não houver usuário "logado" no sistema, não permite que exclua as postagens (imóveis).
+    - Para fazer login no sistema, adicione /admin na URL.
+    Exemplo: http://127.0.0.1:5500/admin
+*/
 function excluirImovel(imovel) {
+    // Verifica se há usuário Logado no Sistema
+    const usuario = JSON.parse(localStorage.getItem('usuarios')) || [];
+    if (usuario.length == 0) {
+        alert("Ação não permitida, faça Login no sistema");
+        return;
+        // Early return. (retorno precoce/antecipado)
+    }
     fetch(`${urlAPI}/${imovel.id}`, {
         method: 'DELETE'
     })
@@ -99,4 +112,19 @@ function excluirImovel(imovel) {
         .catch(erro => {
             console.error('Erro: ', erro); // LOG
         });
+}
+
+// ==== Abre as Informações numa nova página ==== //
+function mostrarImovel(imovel) {
+    localStorage.setItem('imovel', imovel.id);
+    open('./imovel.html');
+    // console.log(imovel.id);
+}
+
+const idMovel = document.querySelector('#imovel');
+
+if (idMovel != undefined) {
+    const id = JSON.parse(localStorage.getItem('imovel'));
+
+    console.log();
 }
